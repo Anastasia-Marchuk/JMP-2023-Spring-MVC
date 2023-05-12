@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="jmp.amarchuk"/>
+    <context:property-placeholder
+            location="classpath*:add_value/prop/event.properties,classpath*:add_value/prop/ticket.properties,classpath*:add_value/prop/user.properties"/>
+    <import resource="classpath*:add_value/listEvent.xml"/>
+    <import resource="classpath*:add_value/mapTicket.xml"/>
+    <import resource="classpath*:add_value/listUser.xml"/>
+
+
+    <!--  DAO   -->
+
+    <!--  Created across Autowired  -->
+
+    <!--  SERVICE   -->
+
+    <bean id="eventService" class="jmp.amarchuk.service.EventServiceImpl">
+        <constructor-arg index="0" ref="eventDaoList"/>
+    </bean>
+    <bean id="ticketService" class="jmp.amarchuk.service.TicketServiceImpl">
+        <constructor-arg index="0" ref="ticketDaoList"/>
+    </bean>
+    <bean id="userService" class="jmp.amarchuk.service.UserServiceImpl">
+        <constructor-arg index="0" ref="userDaoDBImpl"/>
+    </bean>
+
+    <!--  FACADE  -->
+
+    <bean id="facadeImpl" class="jmp.amarchuk.facade.BookingFacadeImpl">
+        <constructor-arg index="0" ref="eventService"/>
+        <constructor-arg index="1" ref="ticketService"/>
+        <constructor-arg index="2" ref="userService"/>
+    </bean>
+
+
+</beans>

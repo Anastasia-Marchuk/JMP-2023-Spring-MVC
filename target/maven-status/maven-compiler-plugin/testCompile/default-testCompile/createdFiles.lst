@@ -1,0 +1,5 @@
+jmp/amarchuk/dao/EventDaoTest.class
+jmp/amarchuk/model/TicketTest.class
+jmp/amarchuk/model/UserTest.class
+jmp/amarchuk/service/EventServiceTest.class
+jmp/amarchuk/web/UserControllerTest.class
